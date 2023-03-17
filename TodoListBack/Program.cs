@@ -43,7 +43,6 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    Seed.SeedDatabase(app);
     app.UseSwagger();
     app.UseSwaggerUI();
 }
@@ -52,6 +51,7 @@ using (var scope = app.Services.CreateScope())
 {
     var dataContext = scope.ServiceProvider.GetRequiredService<DataContext>();
     dataContext.Database.Migrate();
+    Seed.SeedDatabase(app);
 }
 
 app.UseCors("corsapp");
