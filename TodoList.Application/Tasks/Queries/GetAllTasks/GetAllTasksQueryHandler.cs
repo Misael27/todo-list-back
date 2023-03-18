@@ -24,6 +24,7 @@ namespace TodoList.Application.Tasks.Queries.GetAllTasks
                     TaskCategory = x.TaskCategory,
                     TaskState = x.TaskState
                 })
+                .OrderBy(x => x.Date)
                 .ToListAsync(cancellationToken);
         }
     }
